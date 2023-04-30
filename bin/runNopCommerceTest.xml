@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="NopCommerce">
+
+  <test name="Run on FireFox">
+  <parameter name="browser" value="firefox"/>
+    <classes>  
+      <class name="com.nopcommerce.user.Function_01_Register"/>
+    </classes>
+  </test>
+  
+  
+  <!-- <test name="Run on Brave">
+  <parameter name="browser" value="brave"/>
+    <classes>  
+      <class name="com.nopcommerce.user.Level_04_Login"/>
+      <class name="com.nopcommerce.user.Level_04_Register"/>
+    </classes>
+  </test>
+  
+  
+  <test name="Run on Opera">
+  <parameter name="browser" value="opera"/>
+    <classes>  
+      <class name="com.nopcommerce.user.Level_04_Login"/>
+      <class name="com.nopcommerce.user.Level_04_Register"/>
+    </classes>
+  </test> -->
+</suite> 

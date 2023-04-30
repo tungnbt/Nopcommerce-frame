@@ -11,31 +11,31 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class BaseTest {
 	private WebDriver driverBaseTest;
-	private String projectPath = System.getProperty("user.dir");
-
 	protected WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDriver\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			driverBaseTest = new FirefoxDriver();
 		} else if (browserName.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDriver\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			driverBaseTest = new ChromeDriver();
 		} else if (browserName.equals("edge")) {
-			System.setProperty("webdriver.edge.driver", projectPath + "\\browserDriver\\msedgedriver.exe");
+			WebDriverManager.edgedriver().setup();
 			driverBaseTest = new EdgeDriver();
 		} else if (browserName.equals("opera")) {
-			System.setProperty("webdriver.opera.driver", projectPath + "\\browserDriver\\operadriver.exe");
+			WebDriverManager.operadriver().setup();
 			driverBaseTest = new OperaDriver();
 		}else if (browserName.equals("brave")) {
-			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDriver\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
 			driverBaseTest = new ChromeDriver(options);
 		} else if (browserName.equals("coccoc")) {
-			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDriver\\chromedriver_110.exe");
+			WebDriverManager.chromedriver().driverVersion("110.0.5481.77").setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
 			driverBaseTest = new ChromeDriver(options);
@@ -43,7 +43,7 @@ public class BaseTest {
 			throw new RuntimeException("Browser is invalid");
 		}
 		driverBaseTest.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driverBaseTest.get("https://demo.nopcommerce.com/");
+		driverBaseTest.get(GlobalConstants.PORTAL_LINK_URL);
 		return driverBaseTest;
 	}
 
