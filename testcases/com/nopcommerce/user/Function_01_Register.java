@@ -34,11 +34,11 @@ public class Function_01_Register extends BaseTest {
 
 		registerPageObject.clickToRegisterBtn();
 
-		Assert.assertEquals(registerPageObject.getErrorMessageFstName(), "First name is required.");
-		Assert.assertEquals(registerPageObject.getErrorMessageLstName(), "Last name is required.");
-		Assert.assertEquals(registerPageObject.getErrorMessageEmail(), "Email is required.");
-		Assert.assertEquals(registerPageObject.getErrorMessagePassword(), "Password is required.");
-		Assert.assertEquals(registerPageObject.getErrorMessageConfirmPassword(), "Password is required.");
+		Assert.assertEquals(registerPageObject.getErrorMessageFstName("FirstName-error"), "First name is required.");
+		Assert.assertEquals(registerPageObject.getErrorMessageLstName("LastName-error"), "Last name is required.");
+		Assert.assertEquals(registerPageObject.getErrorMessageEmail("Email-error"), "Email is required.");
+		Assert.assertEquals(registerPageObject.getErrorMessagePassword("Password-error"), "Password is required.");
+		Assert.assertEquals(registerPageObject.getErrorMessageConfirmPassword("ConfirmPassword-error"), "Password is required.");
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class Function_01_Register extends BaseTest {
 
 		registerPageObject.RegisterAsUser(fstName, lstName, "asd", password, confirmPassword);
 
-		Assert.assertEquals(registerPageObject.getErrorMessageEmail(), "Wrong email");
+		Assert.assertEquals(registerPageObject.getErrorMessageEmail("Email-error"), "Wrong email");
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class Function_01_Register extends BaseTest {
 
 		registerPageObject.RegisterAsUser(fstName, lstName, email, "123", confirmPassword);
 
-		Assert.assertEquals(registerPageObject.getErrorMessagePassword(),
+		Assert.assertEquals(registerPageObject.getErrorMessagePassword("Password-error"),
 				"Password must meet the following rules:\nmust have at least 6 characters");
 	}
 
@@ -90,7 +90,7 @@ public class Function_01_Register extends BaseTest {
 
 		registerPageObject.RegisterAsUser(fstName, lstName, email, password, "98757324");
 
-		Assert.assertEquals(registerPageObject.getErrorMessageConfirmPassword(),
+		Assert.assertEquals(registerPageObject.getErrorMessageConfirmPassword("ConfirmPassword-error"),
 				"The password and confirmation password do not match.");
 
 	}

@@ -18,67 +18,68 @@ public class UserRegisterPageObject extends BasePage {
 		clickToElement(driver, UserRegisterPageUI.REGISTER_BTN);
 	}
 
-	public String getErrorMessageFstName() {
-		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_FST_NAME);
-		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_FST_NAME);
+	public String getErrorMessageFstName(String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
+		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
 	}
 
-	public String getErrorMessageLstName() {
-		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_LST_NAME);
-		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_LST_NAME);
+	public String getErrorMessageLstName(String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
+		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
 	}
 
-	public String getErrorMessageEmail() {
-		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_EMAIL);
-		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_EMAIL);
+	public String getErrorMessageEmail(String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
+		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
 	}
 
-	public String getErrorMessagePassword() {
-		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_PASSWORD);
-		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_PASSWORD);
+	public String getErrorMessagePassword(String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
+		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
 	}
 
-	public String getErrorMessageConfirmPassword() {
-		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_CONFIRM_PASSWORD);
-		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_CONFIRM_PASSWORD);
+	public String getErrorMessageConfirmPassword(String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
+		return getElementText(driver, UserRegisterPageUI.ERROR_MASSAGE_AT_REGISTER, valueLocator);
 	}
 
-	public void inputToFstNameTxtbox(String fstName) {
-		waitForElementVisible(driver, UserRegisterPageUI.FST_NAME_TXT_BOX);
-		sendKeyToElement(driver, UserRegisterPageUI.FST_NAME_TXT_BOX, fstName);
+	public void inputToFstNameTxtbox(String fstName, String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, valueLocator);
+		sendKeyToElement(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, fstName, valueLocator);
 	}
 
-	public void inputToLstNameTxtbox(String lstName) {
-		waitForElementVisible(driver, UserRegisterPageUI.LST_NAME_TXT_BOX);
-		sendKeyToElement(driver, UserRegisterPageUI.LST_NAME_TXT_BOX, lstName);
+	public void inputToLstNameTxtbox(String lstName,String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, valueLocator);
+		sendKeyToElement(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, lstName, valueLocator);
 	}
 
-	public void inputToEmailTxtbox(String string) {
-		waitForElementVisible(driver, UserRegisterPageUI.EMAIL_TXT_BOX);
-		sendKeyToElement(driver, UserRegisterPageUI.EMAIL_TXT_BOX, string);
+	public void inputToEmailTxtbox(String emailAdd, String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, valueLocator);
+		sendKeyToElement(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, emailAdd, valueLocator);
 	}
 
-	public void inputToPasswordTxtbox(String password) {
-		waitForElementVisible(driver, UserRegisterPageUI.PASSWORD_TXT_BOX);
-		sendKeyToElement(driver, UserRegisterPageUI.PASSWORD_TXT_BOX, password);
+	public void inputToPasswordTxtbox(String password,String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, valueLocator);
+		sendKeyToElement(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, password, valueLocator);
 	}
 
-	public void inputToConfirmPasswordTxtbox(String confirmPassword) {
-		waitForElementVisible(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TXT_BOX);
-		sendKeyToElement(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TXT_BOX, confirmPassword);
+	public void inputToConfirmPasswordTxtbox(String confirmPassword,String valueLocator) {
+		waitForElementVisible(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, valueLocator);
+		sendKeyToElement(driver, UserRegisterPageUI.TXT_BOX_AT_REGISTER, confirmPassword, valueLocator);
 	}
 
 	public String existMessageEmail() {
 		waitForElementVisible(driver, UserRegisterPageUI.EXIST_MESSAGE_EMAIL);
 		return getElementText(driver, UserRegisterPageUI.EXIST_MESSAGE_EMAIL);
 	}
-	
-	public void RegisterAsUser(String fstName, String lstName, String existEmail, String password, String confirmPassword) {
-		inputToFstNameTxtbox(fstName);
-		inputToLstNameTxtbox(lstName);
-		inputToEmailTxtbox(existEmail);
-		inputToPasswordTxtbox(password);
-		inputToConfirmPasswordTxtbox(confirmPassword);
+
+	public void RegisterAsUser(String fstName, String lstName, String existEmail, String password,
+			String confirmPassword) {
+		inputToFstNameTxtbox(fstName,"FirstName");
+		inputToLstNameTxtbox(lstName,"LastName");
+		inputToEmailTxtbox(existEmail,"Email");
+		inputToPasswordTxtbox(password,"Password");
+		inputToConfirmPasswordTxtbox(confirmPassword,"ConfirmPassword");
 		clickToRegisterBtn();
 	}
 }
