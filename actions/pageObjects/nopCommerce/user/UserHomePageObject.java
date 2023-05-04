@@ -6,9 +6,9 @@ import commons.BasePage;
 import commons.PageGeneratorManager;
 import pageUIs.nopCommerce.user.UserHomePageUI;
 
-public class UserHomePageObject  extends BasePage{
+public class UserHomePageObject extends BasePage {
 	WebDriver driver;
-	
+
 	public UserHomePageObject(WebDriver driverClassTest) {
 		this.driver = driverClassTest;
 	}
@@ -24,7 +24,7 @@ public class UserHomePageObject  extends BasePage{
 		clickToElement(driver, UserHomePageUI.LOGIN_LINK);
 		return PageGeneratorManager.getUserLoginPage(driver);
 	}
-	
+
 	public UserHomePageObject clickToLogoutLink() {
 		waitForElementClickable(driver, UserHomePageUI.LOGOUT_LINK);
 		clickToElement(driver, UserHomePageUI.LOGOUT_LINK);
@@ -35,7 +35,7 @@ public class UserHomePageObject  extends BasePage{
 		waitForElementVisible(driver, UserHomePageUI.My_ACC_LINK);
 		return isElementDisplayed(driver, UserHomePageUI.My_ACC_LINK);
 	}
-	
+
 	public UserCustomerInforPageObject clickToMyAccountLink() {
 		waitForElementClickable(driver, UserHomePageUI.My_ACC_LINK);
 		clickToElement(driver, UserHomePageUI.My_ACC_LINK);
@@ -48,7 +48,7 @@ public class UserHomePageObject  extends BasePage{
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
 
-	public void searchingToSearchStoreTxtbox(String valueKeySearchStore) {
+	public void inputToSearchStoreTxtbox(String valueKeySearchStore) {
 		waitForElementVisible(driver, UserHomePageUI.SMALL_SEARCH_TERMS_TXT_BOX);
 		sendKeyToElement(driver, UserHomePageUI.SMALL_SEARCH_TERMS_TXT_BOX, valueKeySearchStore);
 	}
@@ -59,9 +59,22 @@ public class UserHomePageObject  extends BasePage{
 		return PageGeneratorManager.getUserProductDetailPage(driver);
 	}
 
-	public UserSearchPageObject openSearchPage(String...valueLocator) {
+	public void openPageAtFooterPage(String... valueLocator) {
 		waitForElementClickable(driver, UserHomePageUI.OPEN_PAGE_LINK_AT_FOOTER_PAGE, valueLocator);
 		clickToElement(driver, UserHomePageUI.OPEN_PAGE_LINK_AT_FOOTER_PAGE, valueLocator);
-		return PageGeneratorManager.getUserSearchPage(driver);
 	}
+
+	public void openSubMenuPageAtHeaderMenu(String parentLocator, String subLocator) {
+		waitForElementVisible(driver, UserHomePageUI.TOP_MENU_AT_HEADER, parentLocator);
+		hoverMouseToElement(driver, UserHomePageUI.TOP_MENU_AT_HEADER, parentLocator);
+		waitForElementVisible(driver, UserHomePageUI.SUB_MENU_AT_HEADER, subLocator);
+		clickToElement(driver, UserHomePageUI.SUB_MENU_AT_HEADER, subLocator);
+	}
+
+	public UserWishlistPageObject clickWishlistPage() {
+		waitForElementClickable(driver, UserHomePageUI.WISHLIST_LINK);
+		clickToElement(driver, UserHomePageUI.WISHLIST_LINK);
+		return PageGeneratorManager.getUserWishlistPage(driver);
+	}
+
 }

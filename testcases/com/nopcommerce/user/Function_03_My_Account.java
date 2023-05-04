@@ -27,14 +27,14 @@ public class Function_03_My_Account extends BaseTest {
 		homePageObject = PageGeneratorManager.getUserHomePage(driverClassTest);
 		lstName = "iron";
 		fstName = "man";
+		password = "123456";
+		confirmPassword = "123456";
 		existEmail = "ironman" + getRandomNumber() + "@gmail.com.vn";
 		editedEmail = "abc" + getRandomNumber() + "@gmail.com";
 		dayOfBirth = "2";
 		monthOfBirth = "September";
 		yearOfBirth = "2000";
 		companyName = "doofenshmirtz evil incorporated";
-		password = "123456";
-		confirmPassword = "123456";
 		addFstName = "Tony";
 		addLstName = "Cruise";
 		addFullName = addFstName + " " + addLstName;
@@ -121,7 +121,7 @@ public class Function_03_My_Account extends BaseTest {
 	@Test
 	public void TC_04_My_Product_Reviews() {
 		homePageObject.clickToHompageLink();
-		homePageObject.searchingToSearchStoreTxtbox(valueKeySearchStore);
+		homePageObject.inputToSearchStoreTxtbox(valueKeySearchStore);
 		userProductDetailPage = homePageObject.clickToHintFromSearchStore();
 		userInputeReviewProductPage = userProductDetailPage.clickToAddYourReviewLink();
 		userInputeReviewProductPage.inputToReviewTitle(reviewTitle);

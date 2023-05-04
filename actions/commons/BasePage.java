@@ -1,7 +1,9 @@
 package commons;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -265,11 +267,49 @@ public class BasePage {
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
-		return getWebElement(driver, xpathLocator).isDisplayed();
+		try {
+			return getWebElement(driver, xpathLocator).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String locatorType, String... dynamicValues) {
-		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).isDisplayed();
+		try {
+			return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public boolean isElementUndisplayed(WebDriver driver, String xpathLocator) {
+		overrideImplicitTimeout(driver, 5);
+		List<WebElement> elements = getListWebElement(driver, xpathLocator);
+		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		if (elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isElementUndisplayed(WebDriver driver, String locatorType, String... dynamicValues) {
+		overrideImplicitTimeout(driver, 5);
+		List<WebElement> elements = getListWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
+		overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+		if (elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void overrideImplicitTimeout(WebDriver driver, long timeOut) {
+		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
 	}
 
 	public boolean isElementEnabled(WebDriver driver, String xpathLocator) {
@@ -302,6 +342,10 @@ public class BasePage {
 
 	public void hoverMouseToElement(WebDriver driver, String xpathLocator) {
 		new Actions(driver).moveToElement(getWebElement(driver, xpathLocator)).perform();
+	}
+	
+	public void hoverMouseToElement(WebDriver driver, String locatorType, String... dynamicValues) {
+		new Actions(driver).moveToElement(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).perform();
 	}
 
 	public void scrollToBottomPage(WebDriver driver) {
@@ -438,10 +482,6 @@ public class BasePage {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(
 				ExpectedConditions.elementToBeClickable(getByXpath(getDynamicXpath(locatorType, dynamicValues))));
-	}
-
-	public void refreshPage(WebDriver driver) {
-		driver.navigate().refresh();
 	}
 
 	public void openPageAtMyAccountPageName(WebDriver driver, String pageName) {

@@ -11,5 +11,9 @@ public class UserHomePageUI {
 	public static final String HINT_FROM_SEARCH_STORE = "//ul[@id='ui-id-1']//a";
 	public static final String OPEN_PAGE_LINK_AT_FOOTER_PAGE = 
 		"//strong[text()='%s']/ancestor::div[contains(@class,'footer-block')]//a[text()='%s']";
+	public static final String TOP_MENU_AT_HEADER = "//div[@class='header-menu']/ul[@class='top-menu notmobile']//a[contains(text(),'%s')]";
+	public static final String SUB_MENU_AT_HEADER = "//ul[@class='sublist first-level']//a[contains(text(),'%s')]";
+	public static final String WISHLIST_LINK = "//a[@class='ico-wishlist']";
+	
 
 }
