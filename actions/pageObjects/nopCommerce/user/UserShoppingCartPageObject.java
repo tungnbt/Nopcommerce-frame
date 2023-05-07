@@ -6,21 +6,21 @@ import commons.BasePage;
 import commons.PageGeneratorManager;
 import pageUIs.nopCommerce.user.UserShoppingCartPageUI;
 
-public class UserShoppingCartPageObject extends BasePage{
+public class UserShoppingCartPageObject extends BasePage {
 	WebDriver driver;
-	
+
 	public UserShoppingCartPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public String getInfoProductNameByProductName(String value) {
-		waitForElementVisible(driver, UserShoppingCartPageUI.INFO_PRODUCT_NAME ,value);
+		waitForElementVisible(driver, UserShoppingCartPageUI.INFO_PRODUCT_NAME, value);
 		return getElementText(driver, UserShoppingCartPageUI.INFO_PRODUCT_NAME, value);
 	}
 
-	public String getTxtTotalPriceByProductName() {
-		waitForElementVisible(driver, UserShoppingCartPageUI.TOTAL_PRICE_BY_PRODUCT_NAME);
-		return getElementText(driver, UserShoppingCartPageUI.TOTAL_PRICE_BY_PRODUCT_NAME);
+	public String getTxtTotalPriceByProductName(String valueLocator) {
+		waitForElementVisible(driver, UserShoppingCartPageUI.TOTAL_PRICE_BY_PRODUCT_NAME,valueLocator);
+		return getElementText(driver, UserShoppingCartPageUI.TOTAL_PRICE_BY_PRODUCT_NAME,valueLocator);
 	}
 
 	public void clickToRemoveBtnByProductName(String productName) {
@@ -33,14 +33,14 @@ public class UserShoppingCartPageObject extends BasePage{
 		return getElementText(driver, UserShoppingCartPageUI.TXT_EMPTY_AT_SHOPPING_CART_PAGE);
 	}
 
-	public void inputToQtyTxtboxByProductName(String valueQty) {
-		waitForElementVisible(driver, UserShoppingCartPageUI.QTY_TXT_BOX_BY_PRODUCT_NAME);
-		sendKeyToElement(driver, UserShoppingCartPageUI.QTY_TXT_BOX_BY_PRODUCT_NAME, valueQty);
+	public void inputToQtyTxtboxByProductName(String valueLocator, String valueQty) {
+		waitForElementVisible(driver, UserShoppingCartPageUI.QTY_TXT_BOX_BY_PRODUCT_NAME,valueLocator);
+		sendKeyToElement(driver, UserShoppingCartPageUI.QTY_TXT_BOX_BY_PRODUCT_NAME, valueQty, valueLocator);
 	}
 
-	public void clickToUpdateShoppingCart() {
-		waitForElementClickable(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART);
-		clickToElement(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART);
+	public void clickToUpdateShoppingCartBtn() {
+		waitForElementClickable(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BTN);
+		clickToElement(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BTN);
 	}
 
 	public void clickToChkboxTheTermOfService() {
@@ -54,14 +54,10 @@ public class UserShoppingCartPageObject extends BasePage{
 		return PageGeneratorManager.getUserCheckoutPage(driver);
 	}
 
-	public UserProductDetailPageObject clickToEditBtnByProductName() {
-		waitForElementClickable(driver, UserShoppingCartPageUI.EDIT_BTN_BY_PRODUCT_NAME);
-		clickToElement(driver, UserShoppingCartPageUI.EDIT_BTN_BY_PRODUCT_NAME);
+	public UserProductDetailPageObject clickToEditBtnByProductName(String valueLocator) {
+		waitForElementClickable(driver, UserShoppingCartPageUI.EDIT_BTN_BY_PRODUCT_NAME, valueLocator);
+		clickToElement(driver, UserShoppingCartPageUI.EDIT_BTN_BY_PRODUCT_NAME, valueLocator);
 		return PageGeneratorManager.getUserProductDetailPage(driver);
 	}
 
-	public void clickToUpdateShoppingCartBtn() {
-		waitForElementClickable(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BTN);
-		clickToElement(driver, UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BTN);
-	}
 }

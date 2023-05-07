@@ -35,14 +35,14 @@ public class UserProductDetailPageObject extends BasePage {
 		return PageGeneratorManager.getUserWishlistPage(driver);
 	}
 
-	public void selectDropDownByLabel(String string, String valueItem) {
-		waitForElementClickable(driver, UserProductDetailPageUI.DROP_DOWN_BY_LABEL, string);
-		selectItemInDefaultDropdown(driver, UserProductDetailPageUI.DROP_DOWN_BY_LABEL, valueItem, string);
+	public void selectDropDownByLabel(String valueLocator, String valueItem) {
+		waitForElementClickable(driver, UserProductDetailPageUI.DROP_DOWN_BY_LABEL, valueLocator);
+		selectItemInDefaultDropdown(driver, UserProductDetailPageUI.DROP_DOWN_BY_LABEL, valueItem, valueLocator);
 	}
 
-	public void selectRadioBtnAndChkboxBylabel(String string, String valueItem) {
-		waitForElementClickable(driver, UserProductDetailPageUI.RADIO_BTN_AND_CHKBOX_BY_LABEL, string, valueItem);
-		clickToElement(driver, UserProductDetailPageUI.RADIO_BTN_AND_CHKBOX_BY_LABEL, string, valueItem);
+	public void selectRadioBtnAndChkboxBylabel(String valueLocator, String valueItem) {
+		waitForElementClickable(driver, UserProductDetailPageUI.RADIO_BTN_AND_CHKBOX_BY_LABEL, valueLocator, valueItem);
+		clickToElement(driver, UserProductDetailPageUI.RADIO_BTN_AND_CHKBOX_BY_LABEL, valueLocator, valueItem);
 	}
 
 	public String getTxtCurrentProductPrice() {
@@ -50,15 +50,14 @@ public class UserProductDetailPageObject extends BasePage {
 		return getElementText(driver, UserProductDetailPageUI.CURRENT_RODUCT_PRICE);
 	}
 
-	public void inputToQuantityTxtbox(String string) {
+	public void inputToQuantityTxtbox(String txtValue) {
 		waitForElementVisible(driver, UserProductDetailPageUI.QTY_TXT_BOX);
-		sendKeyToElement(driver, UserProductDetailPageUI.QTY_TXT_BOX, string);
+		sendKeyToElement(driver, UserProductDetailPageUI.QTY_TXT_BOX, txtValue);
 	}
 
-	public UserShoppingCartPageObject clickToAddToCartBtn() {
+	public void clickToAddToCartBtn() {
 		waitForElementClickable(driver, UserProductDetailPageUI.ADD_TO_CART_BTN);
 		clickToElement(driver, UserProductDetailPageUI.ADD_TO_CART_BTN);
-		return PageGeneratorManager.getUserShoppingCartPage(driver);
 	}
 
 	public String getTxtMessageAddedToCart() {

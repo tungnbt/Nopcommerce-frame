@@ -3,12 +3,14 @@
 
 	<listeners>
 		<listener class-name="commons.MethodListener" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 
-	<test name="Run on FireFox">
-		<parameter name="browser" value="firefox" />
+	<test name="Run on Chrome">
+		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.user.Function_06_Wishlist_Compare_Recent_View" />
+			<class name="com.nopcommerce.user.Function_07_Order" />
 		</classes>
 	</test>
 </suite> 

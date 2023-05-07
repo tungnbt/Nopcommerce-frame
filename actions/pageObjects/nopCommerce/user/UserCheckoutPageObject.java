@@ -40,7 +40,7 @@ public class UserCheckoutPageObject extends BasePage {
 	}
 
 	public boolean isPaymentInfoUndisplayed() {
-		return isElementUndisplayed(driver, UserCheckoutPageUI.SELECT_DROP_DOWN_BY_ID);
+		return isElementDisplayed(driver, UserCheckoutPageUI.SELECT_DROP_DOWN_BY_ID);
 	}
 
 	public String getTxtAddressConfirmOrder(String valueLocator) {
@@ -86,6 +86,12 @@ public class UserCheckoutPageObject extends BasePage {
 	public void inputTxtboxByID(String valueLocator, String cardholderName) {
 		waitForElementVisible(driver, UserCheckoutPageUI.TXT_BOX_BY_ID, valueLocator);
 		sendKeyToElement(driver, UserCheckoutPageUI.TXT_BOX_BY_ID, cardholderName, valueLocator);
+	}
+
+	public UserHomePageObject clickToContinueBtnAtCheckoutCompleted() {
+		waitForElementClickable(driver, UserCheckoutPageUI.CONTINUE_BTN_AT_CHECKOUT_COMPLETED);
+		clickToElement(driver, UserCheckoutPageUI.CONTINUE_BTN_AT_CHECKOUT_COMPLETED);
+		return PageGeneratorManager.getUserHomePage(driver);
 	}
 
 }
